@@ -1,0 +1,123 @@
+// Classe ReprodutorMusical
+public class ReprodutorMusical {
+    private boolean estaTocando;
+    private String musicaAtual;
+
+    public ReprodutorMusical() {
+        this.estaTocando = false;
+        this.musicaAtual = null;
+    }
+
+    public void tocar(String musica) {
+        if (!estaTocando) {
+            System.out.println("Tocando: " + musica);
+            estaTocando = true;
+            musicaAtual = musica;
+        } else {
+            System.out.println("Já está tocando uma música. Pausando a música atual.");
+            pausar();
+            tocar(musica);
+        }
+    }
+
+    public void pausar() {
+        if (estaTocando) {
+            System.out.println("Música pausada: " + musicaAtual);
+            estaTocando = false;
+        } else {
+            System.out.println("Não há música tocando para pausar.");
+        }
+    }
+
+    public void selecionarMusica(String musica) {
+        if (!estaTocando) {
+            System.out.println("Música selecionada: " + musica);
+            musicaAtual = musica;
+        } else {
+            System.out.println("Não é possível selecionar uma música enquanto outra está tocando.");
+        }
+    }
+}
+
+// Classe AparelhoTelefonico
+public class AparelhoTelefonico {
+    private boolean ligado;
+    private boolean emChamada;
+
+    public AparelhoTelefonico() {
+        this.ligado = false;
+        this.emChamada = false;
+    }
+
+    public void ligar() {
+        if (!ligado) {
+            System.out.println("Aparelho telefônico ligado.");
+            ligado = true;
+        } else {
+            System.out.println("O aparelho telefônico já está ligado.");
+        }
+    }
+
+    public void atender() {
+        if (ligado && !emChamada) {
+            System.out.println("Chamada atendida.");
+            emChamada = true;
+        } else {
+            System.out.println("Não é possível atender uma chamada no momento.");
+        }
+    }
+
+    public void iniciarCorreioVoz() {
+        if (ligado && !emChamada) {
+            System.out.println("Correio de voz iniciado.");
+        } else {
+            System.out.println("Não é possível iniciar o correio de voz no momento.");
+        }
+    }
+}
+
+// Classe NavegadorNaInternet
+public class NavegadorNaInternet {
+    private int numeroAbas;
+
+    public NavegadorNaInternet() {
+        this.numeroAbas = 0;
+    }
+
+    public void exibirPagina(String pagina) {
+        System.out.println("Exibindo página: " + pagina);
+    }
+
+    public void adicionarNovaAba() {
+        numeroAbas++;
+        System.out.println("Nova aba adicionada. Total de abas: " + numeroAbas);
+    }
+
+    public void atualizarPagina() {
+        System.out.println("Página atualizada.");
+    }
+}
+
+// Classe principal para testar as classes
+public class Main {
+    public static void main(String[] args) {
+        // Testando a classe ReprodutorMusical
+        ReprodutorMusical reprodutor = new ReprodutorMusical();
+        reprodutor.tocar("Música 1");
+        reprodutor.pausar();
+        reprodutor.selecionarMusica("Música 2");
+        reprodutor.tocar("Música 2");
+
+        // Testando a classe AparelhoTelefonico
+        AparelhoTelefonico telefone = new AparelhoTelefonico();
+        telefone.ligar();
+        telefone.atender();
+        telefone.iniciarCorreioVoz();
+
+        // Testando a classe NavegadorNaInternet
+        NavegadorNaInternet navegador = new NavegadorNaInternet();
+        navegador.exibirPagina("www.example.com");
+        navegador.adicionarNovaAba();
+        navegador.atualizarPagina();
+    }
+}
