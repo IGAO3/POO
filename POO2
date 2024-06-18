@@ -1,0 +1,78 @@
+// Classe abstrata Forma
+abstract class Forma {
+    // Método abstrato para calcular a área (deve ser implementado nas subclasses)
+    public abstract double calcularArea();
+    
+    // Método abstrato para calcular o perímetro (deve ser implementado nas subclasses)
+    public abstract double calcularPerimetro();
+    
+    // Método genérico para exibir informações da forma
+    public void exibirInformacoes() {
+        System.out.println("Área: " + calcularArea());
+        System.out.println("Perímetro: " + calcularPerimetro());
+    }
+}
+
+// Subclasse Circulo que estende Forma
+class Circulo extends Forma {
+    private double raio;
+
+    // Construtor
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+
+    // Implementação do método calcularArea para Circulo
+    @Override
+    public double calcularArea() {
+        return Math.PI * raio * raio;
+    }
+
+    // Implementação do método calcularPerimetro para Circulo
+    @Override
+    public double calcularPerimetro() {
+        return 2 * Math.PI * raio;
+    }
+}
+
+// Subclasse Retangulo que estende Forma
+class Retangulo extends Forma {
+    private double comprimento;
+    private double largura;
+
+    // Construtor
+    public Retangulo(double comprimento, double largura) {
+        this.comprimento = comprimento;
+        this.largura = largura;
+    }
+
+    // Implementação do método calcularArea para Retangulo
+    @Override
+    public double calcularArea() {
+        return comprimento * largura;
+    }
+
+    // Implementação do método calcularPerimetro para Retangulo
+    @Override
+    public double calcularPerimetro() {
+        return 2 * (comprimento + largura);
+    }
+}
+
+// Classe principal para testar o código
+public class Main {
+    public static void main(String[] args) {
+        // Criando objetos de Circulo e Retangulo
+        Circulo circulo = new Circulo(5);
+        Retangulo retangulo = new Retangulo(4, 6);
+        
+        // Exibindo informações do círculo
+        System.out.println("--- Informações do Círculo ---");
+        circulo.exibirInformacoes();
+        System.out.println();
+        
+        // Exibindo informações do retângulo
+        System.out.println("--- Informações do Retângulo ---");
+        retangulo.exibirInformacoes();
+    }
+}
